@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Text } from '@chakra-ui/react'
+import { Box, Button, Container, Divider, Heading, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger, Text } from '@chakra-ui/react'
 import React from 'react'
 import { DeleteIcon, CloseIcon, EditIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import ProgressBar from './ProgressBar'
@@ -55,15 +55,36 @@ function QuizCard({ width, height, content }) {
                     </Box>
                 </Box>
             </Box>
-            <Box
-                background={'light'} 
-                width={50}
-                opacity={1}
-                display={'flex'} alignItems={'center'} justifyContent={'center'} 
-                _hover={{ background: '#c4c4c4', cursor: 'pointer' }}
-            >
-                <ChevronRightIcon w={6} h={6} />
-            </Box>
+            
+                <Popover
+                    placement='right'
+                >
+                <PopoverTrigger>
+                    <Box
+                        background={'light'} 
+                        width={50}
+                        opacity={1}
+                        display={'flex'} alignItems={'center'} justifyContent={'center'} 
+                        _hover={{ background: '#c4c4c4', cursor: 'pointer' }}
+                    >
+                    <ChevronRightIcon w={6} h={6} />
+                </Box>
+                </PopoverTrigger>
+                <PopoverContent height={height} width={250}>
+                    <Box
+                        background={'dark'} 
+                        width={245}
+                        height={'100%'}
+                        display={'flex'} alignItems={'center'} justifyContent={'center'} flexDir={'column'}
+                    >
+                        <Button m={2} p={1} mb={16} bg={'dark'} _hover={{ borderRadius: 'md', bg: '#919191', h:75 }}>
+                            <Heading fontSize={'1.75rem'} color='light'>Start Quiz</Heading>
+                        </Button>
+                        <Divider />
+                        <Button m={2} p={1} mt={16} bg={'dark'} _hover={{ borderRadius: 'md', bg: '#919191', h:75  }}><Heading fontSize={'1.75rem'} color='light'>View Details</Heading></Button>
+                    </Box>
+                </PopoverContent>
+                </Popover>
         </Box>
     </>
   )

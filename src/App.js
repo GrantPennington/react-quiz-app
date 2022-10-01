@@ -52,7 +52,7 @@ function App() {
             <Box key={idx} ml={10} mr={10}>
               <QuizCard width={675} height={375} content={content}/>
             </Box>
-          )}
+        )}
       </Flex>
       <Divider />
       <Flex align={'center'} height={500} margin={0} direction={'row'}>
@@ -63,7 +63,7 @@ function App() {
           <Box key={idx} ml={10} mr={10}>
             <QuizCard width={675} height={400} content={content}/>
           </Box>
-        )}
+      )}
       </Flex>
     </Grid>
   );
