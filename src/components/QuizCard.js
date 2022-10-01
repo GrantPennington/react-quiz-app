@@ -17,7 +17,7 @@ function QuizCard({ width, height, content }) {
   return (
     <>
         {/* CONTAINER BOX */}
-        <Box background={'light'} width={width} height={height} border={'1px'} borderRadius={'md'} padding={0} display={'flex'} flexDirection={'row'}>
+        <Box background={'light'} width={width} height={height} borderRadius={'md'} padding={0} display={'flex'} flexDirection={'row'}>
             <Box width={width}>
                 {/* HEADING BOX */}
                 <Box width={'100%'} height={100} background={'primary'} borderRadius={'sm'} display={'flex'} alignItems={'center'}>
@@ -34,18 +34,17 @@ function QuizCard({ width, height, content }) {
                         <Text ml={4} fontSize={'1.75rem'}>
                             Topic: {content.topic}
                         </Text>
-                        <Text mr={4} fontSize={'1.5rem'}>
+                        <Text mr={4} fontSize={'1.25rem'}>
                             Due: {content.dueDate}
                         </Text>
                     </Box>
-                    <Box>
-                        <Text ml={4} fontSize={'2rem'}>
-                            Progress: <ProgressBar progress={content.progress} />
-                        </Text>
-                    </Box>
-                    <Box>
-                        <Text ml={4} fontSize={'2rem'}>
+                    
+                    <Box display={'flex'} justifyContent={'space-between'}>
+                        <Text ml={4} fontSize={'1.75rem'}>
                             Questions: {content.questionCount}
+                        </Text>
+                        <Text mr={8} mt={14} fontSize={'2rem'}>
+                            Progress: <ProgressBar progress={content.progress} />
                         </Text>
                     </Box>
                     <Box>
