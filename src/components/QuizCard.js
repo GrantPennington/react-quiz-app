@@ -29,7 +29,7 @@ function QuizCard({ width, height, content }) {
                 <Box width={'100%'} height={100} background={'primaryLight'} borderRadius={'sm'} display={'flex'} alignItems={'center'}>
                     <Box>
                         <Heading ml={4}>
-                            {content.title}
+                            {content.title || 'Empty Quiz'}
                             <EditIcon w={5} h={5} mb={1} ml={3}/>
                         </Heading>
                     </Box>
@@ -38,19 +38,19 @@ function QuizCard({ width, height, content }) {
                 <Box width={'100%'} height={height-100} borderRadius={'sm'} display={'flex'} flexDirection={'column'}>
                     <Box display={'flex'} justifyContent={'space-between'}>
                         <Text ml={4} mt={3} fontSize={'1.75rem'}>
-                            Topic: {content.topic}
+                            Topic: {content.topic || 'Blank'}
                         </Text>
                         <Text mr={4} mt={3} fontSize={'1.25rem'}>
-                            Due: {content.dueDate}
+                            Due: {content.dueDate || 'None'}
                         </Text>
                     </Box>
                     
                     <Box display={'flex'} justifyContent={'space-between'}>
                         <Text ml={4} mt={3} fontSize={'1.75rem'}>
-                            Questions: {content.questionCount}
+                            Questions: {content.questionCount || 0}
                         </Text>
                         <Text mr={20} mt={10} fontSize={'1.5rem'}>
-                            <ProgressBar progress={content.progress} color='primary'/>
+                            <ProgressBar progress={content.progress || 0} color='primary'/>
                             Progress
                         </Text>
                         

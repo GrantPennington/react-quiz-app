@@ -12,11 +12,13 @@ import {
     Input,
     Flex,
     Box,
+    Stack,
   } from '@chakra-ui/react'
   import React, { useEffect, useState } from 'react'
 import CreateQuizInput from './CreateQuizInput'
 import QuizDetails from './QuizDetails'
 import { useQuizzes } from './../context/QuizContext';
+import { CREATE_QUIZ_INPUT_DATA } from '../data/constants';
 
 
 /*
@@ -33,10 +35,9 @@ import { useQuizzes } from './../context/QuizContext';
 */
 
 
-  function CreateModal({ update, show, content }) {
-    //const { isOpen, onOpen, onClose } = useDisclosure()
-    const { setQuizzes } = useQuizzes()
-    const [current, setCurrent] = useState({
+  function CreateModal({ update, show }) {
+    const { setQuizzes } = useQuizzes() // setQuizzes from QuizContext
+    const [current, setCurrent] = useState({ // state object to store the required quiz data
         title: '',
         topic: '',
         progress: 0,
@@ -46,12 +47,14 @@ import { useQuizzes } from './../context/QuizContext';
         answered: 0,
         details: '',
     })
-    
     const [isSubmit, setIsSubmit] = useState(false)
+    const data = CREATE_QUIZ_INPUT_DATA
+
+    
     //const currentLabels = ['Title', 'Topic', 'Question Count', ]
 
     /*
-    label: 'Algorithms Quiz 1 - CS-330-01',
+      label: 'Algorithms Quiz 1 - CS-330-01',
       topic: 'topic goes here',
       progress: 60,
       questionCount: 50,
@@ -66,6 +69,7 @@ import { useQuizzes } from './../context/QuizContext';
         setQuizzes((prev) => [ current, ...prev ])
       }, [isSubmit])
 */
+
     const handleUpdate = (field, value) => {
         console.log('CURRENT: ',current)
         setCurrent(() => {
@@ -86,51 +90,22 @@ import { useQuizzes } from './../context/QuizContext';
             <ModalHeader>Create New Quiz</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-                    <Box key={'input-1'}>
-                        <CreateQuizInput 
-                            placeholder={'Quiz Title'}
-                            heading={'Title'}
-                            update={handleUpdate}
-                            field={'title'}
-                            isSubmit={isSubmit}
-                        />
-                    </Box>
-                    <Box key={'input-2'}>
-                        <CreateQuizInput 
-                            placeholder={'Quiz Topic'}
-                            heading={'Topic'}
-                            update={handleUpdate}
-                            field={'topic'}
-                            isSubmit={isSubmit}
-                        />
-                    </Box>
-                    <Box key={'input-3'}>
-                        <CreateQuizInput 
-                            placeholder={'Question amount'}
-                            heading={'Questions'}
-                            update={handleUpdate}
-                            field={'questionCount'}
-                            isSubmit={isSubmit}
-                        />
-                    </Box>
-                    <Box key={'input-4'}>
-                        <CreateQuizInput 
-                            placeholder={'Quiz Due Date'}
-                            heading={'Due Date'}
-                            update={handleUpdate}
-                            field={'dueDate'}
-                            isSubmit={isSubmit}
-                        />
-                    </Box>
-                    <Box key={'input-5'}>
-                        <CreateQuizInput 
-                            placeholder={'Quiz Details'}
-                            heading={'Details'}
-                            update={handleUpdate}
-                            field={'details'}
-                            isSubmit={isSubmit}
-                        />
-                    </Box>
+                <Stack spacing={3}>
+                    {
+                        data.map((input, index) => 
+                            <Box key={input.id}>
+                                <CreateQuizInput
+                                    id={input.id}
+                                    placeholder={input.placeholder}
+                                    heading={input.heading}
+                                    update={handleUpdate}
+                                    field={input.field}
+                                    onSubmit={isSubmit}
+                                />
+                            </Box>
+                        )
+                    }
+                </Stack>
             </ModalBody>
   
             <ModalFooter>
@@ -139,6 +114,7 @@ import { useQuizzes } from './../context/QuizContext';
               </Button>
               <Button variant='ghost' bg={'primary'} color={'light'} _hover={{ bg: 'primaryLight' }}
                 onClick={() => {
+                    setIsSubmit(true)
                     setQuizzes((prev) => [ current, ...prev ])
                     update(false)
                 }}

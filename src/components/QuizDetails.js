@@ -11,8 +11,8 @@ function QuizDetails({ label, topic, progress, questionCount, dueDate, timeLimit
             justify={'space-between'}
             alignItems={'center'}
         >
-            <Heading>{label}</Heading>
-            <Heading fontSize={'1.75rem'}>Due: {dueDate}</Heading>
+            <Heading>{label || 'Empty Quiz'}</Heading>
+            <Heading fontSize={'1.75rem'}>Due: {dueDate || 'None'}</Heading>
         </Flex>
         <Flex
             width={'100%'}
@@ -20,7 +20,7 @@ function QuizDetails({ label, topic, progress, questionCount, dueDate, timeLimit
             alignItems={'center'}
             mt={8}
         >
-            <Heading fontSize={'1.85rem'}>Topic: {topic}</Heading>
+            <Heading fontSize={'1.85rem'}>Topic: {topic || 'Blank'}</Heading>
         </Flex>
         <Flex
             height={275}
@@ -31,12 +31,16 @@ function QuizDetails({ label, topic, progress, questionCount, dueDate, timeLimit
             alignItems={'center'}
         >
             <Box ml={6}>
-                <Heading mb={6}>Questions: {questionCount}</Heading>
-                <Heading>Answered: {answered}</Heading>
+                <Heading mb={6}>Questions: {questionCount || 0}</Heading>
+                <Heading>Answered: {answered || 0}</Heading>
             </Box>
             <Box textAlign={'center'}>
-                <Heading mb={3}>Time Limit: {timeLimit}</Heading>
-                <Heading fontSize={'1.65rem'}>Remaining: {timeLimit}</Heading>
+                {(timeLimit!=='') &&
+                    <>
+                        <Heading mb={3}>Time Limit: {timeLimit}</Heading>
+                        <Heading fontSize={'1.65rem'}>Remaining: {timeLimit}</Heading>
+                    </>
+                }
             </Box>
             <Box mr={6}>
                 <ProgressBar progress={progress} size={'150px'} color={'primary'}/>

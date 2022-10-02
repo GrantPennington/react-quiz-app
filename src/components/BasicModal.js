@@ -38,7 +38,7 @@ import QuizDetails from './QuizDetails'
             <ModalCloseButton />
             <ModalBody>
                 <QuizDetails 
-                    label={content.label}
+                    label={content.title}
                     topic={content.topic}
                     progress={content.progress}
                     questionCount={content.questionCount}
