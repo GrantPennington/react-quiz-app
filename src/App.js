@@ -1,11 +1,20 @@
-import { Box, Divider, Flex, Grid, Heading } from '@chakra-ui/react';
+import { AddIcon } from '@chakra-ui/icons';
+import { Box, Button, Divider, Flex, Grid, Heading } from '@chakra-ui/react';
+import { useState } from 'react';
 import './App.css';
 import BasicDrawer from './components/BasicDrawer';
 import ButtonBase from './components/ButtonBase';
+import CreateModal from './components/CreateModal';
 import QuizCard from './components/QuizCard';
+import YourQuizzes from './components/YourQuizzes';
+import { QuizProvider } from './context/QuizContext';
 import { useHorizontalScroll } from './hooks/useHorizontalScroll';
 
 function App() {
+  const [showCreateModal, setShowCreateModal] = useState(false)
+
+
+
   const scrollRef = useHorizontalScroll()
   const contentGroup = [
     {
@@ -52,29 +61,11 @@ function App() {
   ]
 
   return (
-    <Grid gap={2} autoFlow={"row dense"} justifyContent={'flex-start'} background={'dark'} height={'100vh'} overflowY={'hidden'} ref={scrollRef}>
-      <Flex align={'center'} height={500} margin={0} direction={'row'}>
-        <Box height={450} m={6}>
-          <Heading pb={5} fontSize={'1.75rem'} color='light'>Recents</Heading>
-        </Box>
-        {contentGroup.map((content, idx) => 
-            <Box key={idx} ml={10} mr={10}>
-              <QuizCard width={675} height={400} content={content}/>
-            </Box>
-        )}
-      </Flex>
-      <Divider />
-      <Flex align={'center'} height={500} margin={0} direction={'row'}>
-        <Box height={450} m={6}>
-          <Heading pb={5} fontSize={'1.75rem'} color='light'>Your Quizzes</Heading>
-        </Box>
-        {contentGroup.map((content, idx) => 
-            <Box key={idx} ml={10} mr={10}>
-              <QuizCard width={675} height={400} content={content}/>
-            </Box>
-        )}
-      </Flex>
-    </Grid>
+    <QuizProvider>
+      
+      <YourQuizzes />
+      
+    </QuizProvider>
   );
 }
 
