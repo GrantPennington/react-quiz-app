@@ -13,12 +13,14 @@ import {
     Flex,
     Box,
     Stack,
+    Divider,
   } from '@chakra-ui/react'
   import React, { useEffect, useState } from 'react'
 import CreateQuizInput from './CreateQuizInput'
 import QuizDetails from './QuizDetails'
 import { useQuizzes } from './../context/QuizContext';
 import { CREATE_QUIZ_INPUT_DATA } from '../data/constants';
+import QuestionStack from './QuestionStack';
 
 
 /*
@@ -90,24 +92,45 @@ import { CREATE_QUIZ_INPUT_DATA } from '../data/constants';
             <ModalHeader>Create New Quiz</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-                <Stack spacing={3}>
-                    {
-                        data.map((input, index) => 
-                            <Box key={input.id}>
-                                <CreateQuizInput
-                                    id={input.id}
-                                    placeholder={input.placeholder}
-                                    heading={input.heading}
-                                    update={handleUpdate}
-                                    field={input.field}
-                                    onSubmit={isSubmit}
-                                />
-                            </Box>
-                        )
-                    }
-                </Stack>
+                <Flex>
+                    <Stack spacing={3}>
+                        {
+                            data.map((input, index) => 
+                                <Box key={input.id}>
+                                    <CreateQuizInput
+                                        id={input.id}
+                                        placeholder={input.placeholder}
+                                        heading={input.heading}
+                                        update={handleUpdate}
+                                        field={input.field}
+                                        onSubmit={isSubmit}
+                                    />
+                                </Box>
+                            )
+                        }
+                    </Stack>
+
+                </Flex>
+                <Flex 
+                    height={625} width={200} mt={6}
+                    direction={'column'}
+                    bg={'dark'}
+                    borderRadius={'md'}
+                >
+                    <Flex 
+                        width={'100%'} height={75} bg={'primary'} align={'center'} borderRadius={'md'}
+                    >
+                        <Heading ml={2}>Questions</Heading>
+                    </Flex>
+                    <Divider orientation='horizontal' bg={'dark'} height={'4px'} borderRadius={'md'}/>
+                    <Box 
+                        width={'100%'} height={'100%'}
+                        p={2}
+                    >
+                        <QuestionStack height={'54px'}/>
+                    </Box>
+                </Flex>
             </ModalBody>
-  
             <ModalFooter>
               <Button background='primary' color={'light'} _hover={{ bg: 'primaryLight' }} mr={3} onClick={() => update(false)}>
                 Close
