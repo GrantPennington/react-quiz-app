@@ -14,7 +14,9 @@ function App() {
       progress: 60,
       questionCount: 50,
       timeLimit: '30 minutes',
-      dueDate: 'September 3, 2022'
+      dueDate: 'September 3, 2022',
+      answered: 0,
+      details: 'You have enough time to think clearly and thouroughly about each question. Make sure to be clear and concise with your answers. Good luck!'
     },
     {
       label: 'Software Design Quiz 3',
@@ -22,7 +24,9 @@ function App() {
       progress: 16,
       questionCount: 25,
       timeLimit: '20 minutes',
-      dueDate: 'September 9, 2022'
+      dueDate: 'September 9, 2022',
+      answered: 0,
+      details: 'You have enough time to think clearly and thouroughly about each question. Make sure to be clear and concise with your answers. Good luck!'
     },
     {
       label: 'Spanish Test 2',
@@ -30,7 +34,10 @@ function App() {
       progress: 2,
       questionCount: 50,
       timeLimit: '59 minutes',
-      dueDate: 'October 1, 2022'
+      dueDate: 'October 1, 2022',
+      answered: 0,
+      details: 'You have enough time to think clearly and thouroughly about each question. Make sure to be clear and concise with your answers. Good luck!'
+    
     },
     {
       label: 'Machine Learning',
@@ -38,7 +45,9 @@ function App() {
       progress: 86,
       questionCount: 46,
       timeLimit: '1 hour',
-      dueDate: 'September 19, 2022'
+      dueDate: 'September 19, 2022',
+      details: 'You have enough time to think clearly and thouroughly about each question. Make sure to be clear and concise with your answers. Good luck!',
+      answered: 0,
     },
   ]
 
@@ -50,20 +59,20 @@ function App() {
         </Box>
         {contentGroup.map((content, idx) => 
             <Box key={idx} ml={10} mr={10}>
-              <QuizCard width={675} height={375} content={content}/>
+              <QuizCard width={675} height={400} content={content}/>
             </Box>
         )}
       </Flex>
       <Divider />
       <Flex align={'center'} height={500} margin={0} direction={'row'}>
-      <Box height={450} m={6}>
-        <Heading pb={5} fontSize={'1.75rem'} color='light'>Your Quizzes</Heading>
-      </Box>
-      {contentGroup.map((content, idx) => 
-          <Box key={idx} ml={10} mr={10}>
-            <QuizCard width={675} height={400} content={content}/>
-          </Box>
-      )}
+        <Box height={450} m={6}>
+          <Heading pb={5} fontSize={'1.75rem'} color='light'>Your Quizzes</Heading>
+        </Box>
+        {contentGroup.map((content, idx) => 
+            <Box key={idx} ml={10} mr={10}>
+              <QuizCard width={675} height={400} content={content}/>
+            </Box>
+        )}
       </Flex>
     </Grid>
   );
