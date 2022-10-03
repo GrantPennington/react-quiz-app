@@ -3,7 +3,7 @@ import React from 'react'
 import BasicRadioSelect from './BasicRadioSelect'
 
 function QuizQuestions({ height, data }) {
-    const options = [ 'Blue', 'Orange', 'Green', 'Purple' ]
+    //const options = [ 'Blue', 'Orange', 'Green', 'Purple' ]
     return (
         <>
             <Tabs variant="enclosed" orientation='vertical' height={825} bg={'dark'}>
@@ -14,7 +14,7 @@ function QuizQuestions({ height, data }) {
                             key={index}
                             bg={'light'}
                         >
-                            {tab.label}
+                            {tab.questions[index].label}
                         </Tab>
                     ))}
                 </TabList>
@@ -22,12 +22,13 @@ function QuizQuestions({ height, data }) {
                 {data.map((tab, index) => (
                     <TabPanel p={4} key={index}>
                         <Box width={'100%'} height={795} bg={'primary'} p={10}>   
-                            <Heading height={75}>{tab.label}</Heading>
-                            <BasicRadioSelect 
+                            <Heading height={75}>{tab.questions[index].label}</Heading>
+                            <BasicRadioSelect
                                 id={tab.id}
-                                helperText={tab.helperText} 
-                                question={tab.question} 
-                                options={tab.options}
+                                helperText={tab.helperText}
+                                question={tab.questions[index].question}
+                                options={tab.questions}
+                                field={Object.keys(tab.questions[index].options)}
                             />
                         </Box>
                     </TabPanel>

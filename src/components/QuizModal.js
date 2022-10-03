@@ -40,7 +40,7 @@ import QuizQuestions from './QuizQuestions';
 
 
   function QuizModal({ update, show, title }) {
-    const { setQuizzes } = useQuizzes() // setQuizzes from QuizContext
+    const { setQuizzes, quizzes } = useQuizzes() // setQuizzes from QuizContext
     const [current, setCurrent] = useState({ // state object to store the required quiz data
         title: '',
         topic: '',
@@ -119,7 +119,7 @@ import QuizQuestions from './QuizQuestions';
             />
             <ModalBody>
             <Box width={"100%"} height={"100%"} p={2}>
-                <QuizQuestions height={"54px"} data={temp_data} />
+                <QuizQuestions height={"54px"} data={quizzes} />
             </Box>
             </ModalBody>
             <ModalFooter>

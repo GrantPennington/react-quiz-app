@@ -1,13 +1,13 @@
 import { AddIcon } from '@chakra-ui/icons'
-import { Box, Flex, Heading, SimpleGrid, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, SimpleGrid, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import BasicRadioSelect from './BasicRadioSelect'
 import BasicSelect from './BasicSelect'
 import CreateRadioCheck from './CreateRadioCheck';
 
-function QuestionStack({ height, data }) {
+function QuestionStack({ height, data, updater }) {
     const options = [ 'Blue', 'Orange', 'Green', 'Purple' ]
-    const [questionType, setQuestionType] = useState('')
+    const [questionType, setQuestionType] = useState('Radio Check')
     return (
         <>
             <Tabs variant="enclosed" orientation='vertical' height={500}>
@@ -44,9 +44,9 @@ function QuestionStack({ height, data }) {
                                 <CreateRadioCheck
                                     id={tab.id}
                                     helperText={tab.helperText} 
-                                    question={tab.question} 
-                                    options={tab.options}
-                                />
+                                    question={tab.question}
+                                    updater={updater}
+                                />           
                             }
                             </Flex>
                         </Box>
