@@ -48,6 +48,7 @@ import QuestionStack from './QuestionStack';
         dueDate: '',
         answered: 0,
         details: '',
+        questions: '',
     })
     const [isSubmit, setIsSubmit] = useState(false)
     const data = CREATE_QUIZ_INPUT_DATA
@@ -131,6 +132,7 @@ import QuestionStack from './QuestionStack';
                         <QuestionStack 
                             height={'54px'}
                             data={temp_data}
+                            updater={handleUpdate}
                         />
                     </Box>
                 </Flex>
