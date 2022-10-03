@@ -19,7 +19,7 @@ import {
 import CreateQuizInput from './CreateQuizInput'
 import QuizDetails from './QuizDetails'
 import { useQuizzes } from './../context/QuizContext';
-import { CREATE_QUIZ_INPUT_DATA } from '../data/constants';
+import { CREATE_QUIZ_INPUT_DATA, QUESTION_TAB_PANEL_DATA } from '../data/constants';
 import QuestionStack from './QuestionStack';
 
 
@@ -51,6 +51,7 @@ import QuestionStack from './QuestionStack';
     })
     const [isSubmit, setIsSubmit] = useState(false)
     const data = CREATE_QUIZ_INPUT_DATA
+    const temp_data = QUESTION_TAB_PANEL_DATA
 
     
     //const currentLabels = ['Title', 'Topic', 'Question Count', ]
@@ -127,7 +128,10 @@ import QuestionStack from './QuestionStack';
                         width={'100%'} height={'100%'}
                         p={2}
                     >
-                        <QuestionStack height={'54px'}/>
+                        <QuestionStack 
+                            height={'54px'}
+                            data={temp_data}
+                        />
                     </Box>
                 </Flex>
             </ModalBody>

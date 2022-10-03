@@ -3,10 +3,12 @@ import React, { useState } from 'react'
 import { DeleteIcon, CloseIcon, EditIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import ProgressBar from './ProgressBar'
 import BasicUsage from './BasicModal'
+import QuizModal from './QuizModal';
 
 function QuizCard({ width, height, content }) {
     const [details, setDetails] = useState()
     const [showDetails, setShowDetails] = useState(false)
+    const [startQuiz, setStartQuiz] = useState(false)
     /*
     content shape = {
         label:
@@ -20,8 +22,8 @@ function QuizCard({ width, height, content }) {
     */
   return (
     <>
-    {showDetails ? 
-        <BasicUsage update={setShowDetails} show={showDetails} content={content}/>
+    {showDetails || startQuiz ? 
+        (startQuiz===true) ?  <QuizModal update={setStartQuiz} show={startQuiz} title={content.title}/> : <BasicUsage update={setShowDetails} show={showDetails} content={content}/>
         :
         <Box background={'light'} width={width} height={height} borderRadius={'md'} padding={0} display={'flex'} flexDirection={'row'}>
             <Box width={width}>
@@ -83,7 +85,9 @@ function QuizCard({ width, height, content }) {
                         height={'100%'}
                         display={'flex'} alignItems={'center'} justifyContent={'center'} flexDir={'column'}
                     >
-                        <Button m={2} p={1} mb={16} bg={'dark'} _hover={{ borderRadius: 'md', bg: '#919191' }}>
+                        <Button m={2} p={1} mb={16} bg={'dark'} _hover={{ borderRadius: 'md', bg: '#919191' }}
+                            onClick={() => setStartQuiz(true)}
+                        >
                             <Heading fontSize={'1.75rem'} color='light'>Start Quiz</Heading>
                         </Button>
                         <Divider />

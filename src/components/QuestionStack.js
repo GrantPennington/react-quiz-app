@@ -1,37 +1,76 @@
-import { Box, Heading, SimpleGrid, Stack, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
-import React from 'react'
+import { AddIcon } from '@chakra-ui/icons'
+import { Box, Flex, Heading, SimpleGrid, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import React, { useState } from 'react'
 import BasicRadioSelect from './BasicRadioSelect'
+import BasicSelect from './BasicSelect'
+import CreateRadioCheck from './CreateRadioCheck';
 
-function QuestionStack({ height }) {
+function QuestionStack({ height, data }) {
     const options = [ 'Blue', 'Orange', 'Green', 'Purple' ]
+    const [questionType, setQuestionType] = useState('')
     return (
         <>
-            <Tabs variant="enclosed" orientation='vertical'>
+            <Tabs variant="enclosed" orientation='vertical' height={500}>
                 <TabList>
-                    <Tab width={'100%'}>
-                        <Box bg="tomato" height={height}>Question 1</Box>
-                    </Tab>
-                    <Tab width={184}>
-                        <Box bg="tomato" height={height}>Question 2</Box>
-                    </Tab>
+                    {data.map((tab, index) => (
+                        <Tab 
+                            width={185}
+                            key={index}
+                        >
+                            {tab.label}
+                        </Tab>
+                    ))}
                 </TabList>
                 <TabPanels>
-                    <TabPanel>
-                        <Box width={600} height={500} bg={'primary'}>
-                            <Heading>Question 1</Heading>
-                            <BasicRadioSelect 
-                                id={'question-1'}
-                                helperText={'Select one of the follow'} 
-                                question={"What is Grant's favorite color?"} 
-                                options={options}
+                {data.map((tab, index) => (
+                    <TabPanel p={2} key={index}>
+                        <Box width={700} height={525} bg={'primary'} p={4}>
+                            <Flex height={65} justify='center'>
+                                <Heading height={75}>{tab.label}</Heading>
+                            </Flex>
+                            <Flex height={34}>
+                                <Text fontSize={'1.25rem'} fontWeight={'bold'}>Question Type</Text>
+                            </Flex>
+                            <BasicSelect 
+                                options={['Radio Check', 'Check Box', 'Fill In', 'Matching']}
+                                update={setQuestionType}
                             />
+                            <Flex
+                                height={350}
+                                pt={6}
+                                pl={2}
+                            >
+                            {(questionType==='Radio Check') &&
+                                <CreateRadioCheck
+                                    id={tab.id}
+                                    helperText={tab.helperText} 
+                                    question={tab.question} 
+                                    options={tab.options}
+                                />
+                            }
+                            </Flex>
                         </Box>
                     </TabPanel>
-                    <TabPanel>
-                        <p>two!</p>
-                    </TabPanel>
+                ))}
                 </TabPanels>
             </Tabs>
+            <Flex
+                justify={"center"}
+                align={"center"}
+                mt={2}
+            >
+                <Flex
+                    borderRadius={'50%'}
+                    height={35}
+                    width={35}
+                    bg={'primary'}
+                    justify={'center'}
+                    align={'center'}
+                    _hover={{ bg:'primaryLight', cursor:'pointer' }}
+                >
+                    <AddIcon size={'15px'}/>
+                </Flex>
+            </Flex>
         </>
     )
 }
