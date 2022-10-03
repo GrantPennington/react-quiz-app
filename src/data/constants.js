@@ -24,7 +24,21 @@ export const CREATE_QUIZ_INPUT_DATA = [
         field: 'details',
     },
 ];
+
+export const QUESTION_TAB_PANEL_DATA = [
+    {  
+        label: 'Question 1',
+        id: 'question-1',
+        question: "What is Grant's favorite color?",
+        helperText: 'Select one of the above options',
+        options: [ 'Blue', 'Orange', 'Green', 'Purple' ],
+    }
+];
 /*
+id={tab.id}
+                                helperText={tab.helperText} 
+                                question={tab.question} 
+                                options={tab.options}
 <Box key={'input-1'}>
                         <CreateQuizInput 
                             placeholder={'Quiz Title'}
