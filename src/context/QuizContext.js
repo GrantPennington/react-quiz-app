@@ -9,6 +9,15 @@ export function useQuizzes() {
 export function QuizProvider({ children }) {
     const [quizzes, setQuizzes] = useState([])
 
+
+    const updateOptions = (index, answers) => {
+        setQuizzes((prev) => {
+            const updated = {
+                ...prev,
+            }
+            return updated
+        })
+    }
     /*
         Shape of quizzes
         quizzes = [
@@ -41,6 +50,7 @@ export function QuizProvider({ children }) {
     const defaultQuizContext = {
         quizzes,
         setQuizzes,
+        updateOptions,
     }
     return (
         <QuizContext.Provider value={defaultQuizContext}>
